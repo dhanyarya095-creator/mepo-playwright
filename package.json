@@ -1,18 +1,34 @@
 {
   "name": "mepo-playwright-automation",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Playwright automation tests for dev.mepo.travel",
   "scripts": {
-    "test": "npx playwright test",
-    "test:headed": "npx playwright test --headed",
+    "test": "npx playwright test --project=chromium",
+    "test:headed": "npx playwright test --headed --project=chromium",
     "test:demo": "npx playwright test --headed --workers=1 --project=chromium",
     "test:ui": "npx playwright test --ui",
     "test:report": "npx playwright show-report",
-    "test:debug": "npx playwright test --debug"
+    "test:debug": "npx playwright test --debug --project=chromium",
+    "test:smoke": "npx playwright test tests/smoke.spec.ts --project=chromium",
+    "test:regression": "npx playwright test --project=chromium",
+    "test:critical": "npx playwright test -g @critical --project=chromium",
+    "test:chrome": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
+    "test:all-browsers": "npx playwright test",
+    "test:a11y": "npx playwright test tests/accessibility.spec.ts --project=chromium",
+    "test:visual": "npx playwright test tests/visual-regression.spec.ts --project=chromium",
+    "test:api": "npx playwright test tests/api-monitoring.spec.ts --project=chromium",
+    "test:devices": "npx playwright test tests/device-emulation.spec.ts --project=iphone14 --project=galaxy-s5 --project=ipad-pro --project=pixel7",
+    "test:update-snapshots": "npx playwright test tests/visual-regression.spec.ts --update-snapshots --project=chromium",
+    "allure:generate": "npx allure generate allure-results -o allure-report --clean",
+    "allure:open": "npx allure open allure-report"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
     "@playwright/test": "^1.52.0",
     "@types/node": "^25.6.0",
+    "allure-playwright": "^3.2.2",
     "typescript": "^6.0.2"
   }
 }

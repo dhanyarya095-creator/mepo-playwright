@@ -20,10 +20,11 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 1,
 
-  /* Reporter */
+  /* Reporter — Allure + HTML + List */
   reporter: [
     ['html', { open: 'never' }],
     ['list'],
+    ['allure-playwright'],
   ],
 
   /* Shared settings for all projects */
@@ -46,20 +47,42 @@ export default defineConfig({
     actionTimeout: 10000,
   },
 
-  /* Configure projects for major browsers */
+  /* Configure projects for multiple browsers & devices */
   projects: [
+    // === Desktop Browsers ===
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-    // Uncomment to test on other browsers:
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+
+    // === Device Emulation (only for device-emulation.spec.ts) ===
+    {
+      name: 'iphone14',
+      testMatch: 'device-emulation.spec.ts',
+      use: { ...devices['iPhone 14'] },
+    },
+    {
+      name: 'galaxy-s5',
+      testMatch: 'device-emulation.spec.ts',
+      use: { ...devices['Galaxy S5'] },
+    },
+    {
+      name: 'ipad-pro',
+      testMatch: 'device-emulation.spec.ts',
+      use: { ...devices['iPad Pro 11'] },
+    },
+    {
+      name: 'pixel7',
+      testMatch: 'device-emulation.spec.ts',
+      use: { ...devices['Pixel 7'] },
+    },
   ],
 });

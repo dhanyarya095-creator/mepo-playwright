@@ -1,0 +1,82 @@
+[
+  {
+    "scenario": "Valid Indonesian user",
+    "name": "Budi Santoso",
+    "phone": "081234567890",
+    "email": "budi.santoso@gmail.com",
+    "message": "Saya tertarik dengan paket wisata Yogyakarta untuk keluarga.",
+    "valid": true
+  },
+  {
+    "scenario": "Valid user with country code",
+    "name": "Siti Nurhaliza",
+    "phone": "+6285678901234",
+    "email": "siti@company.co.id",
+    "message": "Ingin menanyakan corporate outing untuk 50 orang.",
+    "valid": true
+  },
+  {
+    "scenario": "Valid user with hyphenated name",
+    "name": "Ahmad Rizky Al-Farabi",
+    "phone": "087812345678",
+    "email": "ahmad.rizky@yahoo.com",
+    "message": "Apakah ada paket honeymoon ke Bali?",
+    "valid": true
+  },
+  {
+    "scenario": "Valid user with long message",
+    "name": "Diana Permata",
+    "phone": "082198765432",
+    "email": "diana@outlook.com",
+    "message": "Halo tim Mepo, saya ingin bertanya tentang paket wisata ke Yogyakarta untuk rombongan kantor sebanyak 30 orang. Kami membutuhkan hotel bintang 4, transportasi bus, dan guide selama 3 hari 2 malam. Mohon info harga dan itinerary. Terima kasih.",
+    "valid": true
+  },
+  {
+    "scenario": "Valid user with subdomain email",
+    "name": "Eko Wibowo",
+    "phone": "081345678901",
+    "email": "eko@mail.university.ac.id",
+    "message": "Inquiry untuk study tour mahasiswa.",
+    "valid": true
+  },
+  {
+    "scenario": "Valid user with special characters in name",
+    "name": "O'Brien Jr.",
+    "phone": "089876543210",
+    "email": "obrien@test.com",
+    "message": "Looking for travel packages.",
+    "valid": true
+  },
+  {
+    "scenario": "Valid minimal input",
+    "name": "A",
+    "phone": "08",
+    "email": "a@b.c",
+    "message": "Hi",
+    "valid": true
+  },
+  {
+    "scenario": "Unicode characters in name",
+    "name": "田中太郎",
+    "phone": "081234567890",
+    "email": "tanaka@test.jp",
+    "message": "日本からの旅行パッケージについてお問い合わせです。",
+    "valid": true
+  },
+  {
+    "scenario": "Emoji in message",
+    "name": "Happy Traveler",
+    "phone": "081234567890",
+    "email": "happy@travel.com",
+    "message": "🎉 Can't wait to travel! ✈️🌍 Please send info 😊",
+    "valid": true
+  },
+  {
+    "scenario": "Very long name",
+    "name": "Muhammad Abdul Rahman Bin Abdullah Al-Syed Shah Putra Agung Prasetya Nugraha",
+    "phone": "081234567890",
+    "email": "long.name@email.com",
+    "message": "Test with very long name.",
+    "valid": true
+  }
+]
