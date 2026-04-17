@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
 test.describe('Navigation - dev.mepo.travel', () => {
 
@@ -74,9 +74,11 @@ test.describe('Navigation - dev.mepo.travel', () => {
 
   test('should navigate to Home by clicking Mepo logo', async ({ page }) => {
     await page.goto('/about');
+    await page.waitForLoadState('networkidle');
 
     const logo = page.locator('a[href="/"] img').first();
     await logo.click();
+    await page.waitForLoadState('domcontentloaded');
 
     await expect(page).toHaveURL(/\/(#.*)?$/);
   });
