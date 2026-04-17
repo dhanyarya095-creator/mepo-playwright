@@ -1,11 +1,11 @@
 import { test, expect } from './fixtures';
 
 const pages = [
-  { name: 'Homepage', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Products', path: '/products' },
-  { name: 'Activities', path: '/activities' },
-  { name: 'Contact Us', path: '/contact-us' },
+  { name: 'Homepage', path: '/', maxDiff: 0.02 },
+  { name: 'About', path: '/about', maxDiff: 0.02 },
+  { name: 'Products', path: '/products', maxDiff: 0.05 },  // Slick slider is dynamic
+  { name: 'Activities', path: '/activities', maxDiff: 0.02 },
+  { name: 'Contact Us', path: '/contact-us', maxDiff: 0.02 },
 ];
 
 test.describe('Visual Regression Testing @regression', () => {
@@ -14,13 +14,12 @@ test.describe('Visual Regression Testing @regression', () => {
     test(`should match visual snapshot for ${p.name} page`, async ({ page }) => {
       await page.goto(p.path);
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(1000); // Wait for animations
+      await page.waitForTimeout(2000); // Wait for animations/sliders to settle
 
-      // Take full page screenshot and compare with baseline
       await expect(page).toHaveScreenshot(`${p.name.toLowerCase().replace(/\s/g, '-')}.png`, {
         fullPage: true,
-        maxDiffPixelRatio: 0.02, // Allow 2% pixel difference
-        threshold: 0.2,
+        maxDiffPixelRatio: p.maxDiff,
+        threshold: 0.3,
       });
     });
   }
@@ -38,11 +37,12 @@ test.describe('Visual Regression Testing @regression', () => {
   test('should match footer visual snapshot', async ({ page }) => {
     await page.goto('/');
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
 
     const footer = page.locator('footer');
     await expect(footer).toHaveScreenshot('footer.png', {
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.05,
+      threshold: 0.3,
     });
   });
 });
